@@ -61,6 +61,7 @@ venv.bak/
 # Data
 # data/used_cars.csv
 
+data/*.joblib
 # AzureML/MLflow artifacts
 mlruns/
 logs/
