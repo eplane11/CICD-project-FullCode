@@ -6,21 +6,20 @@ from src.training.train_model import train_model
 from src.registration.register_model import register_model
 
 def test_register_model(tmp_path, monkeypatch):
-    # Create a dummy dataframe and train a model
-    df = pd.DataFrame({
-        "Segment": ["Luxury", "Non-Luxury"],
-        "Kilometers_Driven": [10000, 20000],
-        "Mileage": [15.0, 18.0],
-        "Engine": [2000, 1500],
-        "Power": [150, 100],
-        "Seats": [5, 4],
-        "Price": [20, 10]
-    })
+    # Use the real used_cars.csv for testing
+    import shutil
+    used_cars_path = "data/used_cars.csv"
+    assert os.path.exists(used_cars_path), "used_cars.csv not found in data/"
+    df = pd.read_csv(used_cars_path)
+    # Use 80% for train, 20% for test
+    train_df = df.sample(frac=0.8, random_state=42)
+    test_df = df.drop(train_df.index)
     train_csv = tmp_path / "train.csv"
+    test_csv = tmp_path / "test.csv"
     model_path = tmp_path / "model.joblib"
-    df.to_csv(train_csv, index=False)
-    # For test, use train_csv as both train and test (minimal viable for signature)
-    train_model(str(train_csv), str(train_csv), str(model_path), n_estimators=10, max_depth=2, random_state=42)
+    train_df.to_csv(train_csv, index=False)
+    test_df.to_csv(test_csv, index=False)
+    train_model(str(train_csv), str(test_csv), str(model_path), n_estimators=10, max_depth=2, random_state=42)
 
     # Patch mlflow.start_run to avoid actual logging during test
     class DummyRun:
