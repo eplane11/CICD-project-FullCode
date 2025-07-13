@@ -15,8 +15,8 @@ def evaluate_model(model_path, test_csv_path):
     """
     model = joblib.load(model_path)
     df = pd.read_csv(test_csv_path)
-    X_test = df.drop(columns=["Price"])
-    y_test = df["Price"]
+    X_test = df.drop(columns=["price"])
+    y_test = df["price"]
     y_pred = model.predict(X_test)
     mse = mean_squared_error(y_test, y_pred)
     return mse
