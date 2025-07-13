@@ -19,7 +19,8 @@ def test_register_model(tmp_path, monkeypatch):
     train_csv = tmp_path / "train.csv"
     model_path = tmp_path / "model.joblib"
     df.to_csv(train_csv, index=False)
-    train_model(str(train_csv), str(model_path), n_estimators=10, max_depth=2, random_state=42)
+    # For test, use train_csv as both train and test (minimal viable for signature)
+    train_model(str(train_csv), str(train_csv), str(model_path), n_estimators=10, max_depth=2, random_state=42)
 
     # Patch mlflow.start_run to avoid actual logging during test
     class DummyRun:

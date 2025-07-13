@@ -20,6 +20,6 @@ def test_evaluate_model(tmp_path):
     df.iloc[:1].to_csv(train_csv, index=False)
     df.iloc[1:].to_csv(test_csv, index=False)
 
-    train_model(str(train_csv), str(model_path), n_estimators=10, max_depth=2, random_state=42)
+    train_model(str(train_csv), str(test_csv), str(model_path), n_estimators=10, max_depth=2, random_state=42)
     mse = evaluate_model(str(model_path), str(test_csv))
     assert mse >= 0
