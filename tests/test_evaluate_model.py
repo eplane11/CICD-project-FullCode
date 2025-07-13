@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 import joblib
 from src.evaluation.evaluate_model import evaluate_model
@@ -5,7 +6,6 @@ from src.training.train_model import train_model
 
 def test_evaluate_model(tmp_path):
     # Use the real used_cars.csv for testing
-    import shutil
     used_cars_path = "data/used_cars.csv"
     assert os.path.exists(used_cars_path), "used_cars.csv not found in data/"
     df = pd.read_csv(used_cars_path)
