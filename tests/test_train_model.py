@@ -9,8 +9,8 @@ def test_train_model(tmp_path):
     used_cars_path = "data/used_cars.csv"
     assert os.path.exists(used_cars_path), "used_cars.csv not found in data/"
     df = pd.read_csv(used_cars_path)
-    # Normalize column names: lowercase, strip, replace spaces with underscores
-    df.columns = [c.strip().lower().replace(" ", "_") for c in df.columns]
+    # Only ensure 'price' is lowercase, keep other columns as in original CSV
+    df.columns = [c if c.lower() != "price" else "price" for c in df.columns]
     # Use 80% for train, 20% for test
     train_df = df.sample(frac=0.8, random_state=42)
     test_df = df.drop(train_df.index)
