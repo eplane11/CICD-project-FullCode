@@ -11,8 +11,8 @@ def test_evaluate_model(tmp_path):
     df = pd.read_csv(used_cars_path)
     # Only ensure 'price' is lowercase, keep other columns as in original CSV
     df.columns = [c if c.lower() != "price" else "price" for c in df.columns]
-    # Use 50% for train, 50% for test to reduce risk of missing categories
-    train_df = df.sample(frac=0.5, random_state=42)
+    # Use 80% for train, 20% for test (standard split)
+    train_df = df.sample(frac=0.8, random_state=42)
     test_df = df.drop(train_df.index)
     train_csv = tmp_path / "train.csv"
     test_csv = tmp_path / "test.csv"
