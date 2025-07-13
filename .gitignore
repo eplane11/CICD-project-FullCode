@@ -59,7 +59,7 @@ env.bak/
 venv.bak/
 
 # Data
-data/used_cars.csv
+# data/used_cars.csv
 
 # AzureML/MLflow artifacts
 mlruns/
