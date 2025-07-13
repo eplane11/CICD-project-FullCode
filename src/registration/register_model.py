@@ -43,5 +43,6 @@ def register_model(model_path, model_name="used_cars_price_prediction_model", ar
         mlflow.sklearn.log_model(
             sk_model=model,
             registered_model_name=model_name,
-            input_example=input_example
+            input_example=input_example,
+            artifact_path=artifact_path
         )
