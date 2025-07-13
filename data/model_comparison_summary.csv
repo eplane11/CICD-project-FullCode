@@ -1,0 +1,7 @@
+model_type,best_test_mse,best_test_r2,best_test_mae,best_params
+random_forest,55.313439871854186,0.9332071448734802,4.69452479960318,"{'n_estimators': 50, 'max_depth': 10, 'min_samples_split': 2, 'min_samples_leaf': 1, 'max_features': 'auto', 'bootstrap': True, 'random_state': 42}"
+linear_regression,134.1158814584175,-10210183.245330049,82725.60900358779,"{'fit_intercept': True, 'normalize': False, 'copy_X': True, 'n_jobs': None}"
+decision_tree,107.03673062499998,0.8707495166018449,4.817625,"{'max_depth': None, 'min_samples_split': 2, 'min_samples_leaf': 1, 'max_features': 'auto', 'random_state': 42}"
+gradient_boosting,56.285892695462664,0.932032875098989,5.1032507829048654,"{'n_estimators': 50, 'max_depth': 3, 'learning_rate': 0.01, 'subsample': 0.8, 'min_samples_split': 2, 'min_samples_leaf': 1, 'max_features': 'auto', 'random_state': 42}"
+extra_trees,35.375183964750065,0.9572832652768386,3.8254875000000026,"{'n_estimators': 50, 'max_depth': None, 'min_samples_split': 2, 'min_samples_leaf': 1, 'max_features': 'auto', 'random_state': 42}"
+svr,265.4242187752832,-0.07108753517254995,25.352875,"{'C': 0.1, 'kernel': 'rbf', 'gamma': 'scale', 'epsilon': 0.1}"

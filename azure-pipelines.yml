@@ -1,0 +1,39 @@
+trigger:
+  - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  PYTHON_VERSION: '3.8'
+
+steps:
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '$(PYTHON_VERSION)'
+
+  - script: |
+      python -m pip install --upgrade pip
+      pip install -r requirements.txt
+    displayName: 'Install dependencies'
+
+  - script: |
+      pip install pytest
+      pytest tests/
+    displayName: 'Run unit tests'
+
+  - script: |
+      python local_pipeline.py
+    displayName: 'Run Full Local Pipeline'
+
+  - script: |
+      echo "##[section] AzureML pipeline submission is handled via scripts or manual triggers."
+    displayName: 'AzureML Pipeline Submission (manual/optional)'
+
+  - task: PublishTestResults@2
+    condition: succeededOrFailed()
+    inputs:
+      testResultsFormat: 'JUnit'
+      testResultsFiles: '**/TEST-*.xml'
+      failTaskOnFailedTests: true
+      testRunTitle: 'Unit Tests'
