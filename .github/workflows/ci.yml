@@ -27,7 +27,7 @@ jobs:
       - name: Run unit tests
         run: |
           pip install pytest
-          pytest tests/
+          PYTHONPATH=. pytest tests/
         continue-on-error: true
 
       - name: Run full local pipeline
