@@ -10,6 +10,8 @@ from sklearn.linear_model import LinearRegression
 from sklearn.tree import DecisionTreeRegressor
 
 import traceback
+import sklearn
+print(f"scikit-learn version (training): {sklearn.__version__}")
 
 def train_model(
     train_csv_path,

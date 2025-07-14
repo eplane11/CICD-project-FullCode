@@ -2,6 +2,8 @@ import mlflow
 import mlflow.sklearn
 import joblib
 import os
+import sklearn
+print(f"scikit-learn version (registration): {sklearn.__version__}")
 
 def register_model(model_path, model_name="used_cars_price_prediction_model", artifact_path="random_forest_price_regressor"):
     """
